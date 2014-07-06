@@ -7,7 +7,7 @@ env:
   - secure: QMrkOenBVn2HwMdqrcC0ARbrAvlE6xIex5agPplkeg0osJgvFLJ+wiZAxdVkrLGyLbstz2bK8nf+WMRCk1s4pftver6m3uMrXARGqsHm7RQINzpYz4Q3XNyGBKXpsdxbJwO0xwh4VfGU5OQ3sf1Tix0Uf3kdG9Y/t1Fr3DkRlq0=
   - DODGY=yes
 before_script:
-- openssl aes-256-cbc -d -pass env:DODGY_PASS -in dodgy.enc -out dodgy
+- openssl aes-256-cbc -d -pass env:DODGY_PASS -in dodgy.enc -out dodgy ; chmod 600 dodgy
 script:
 - if [[ "$TRAVIS_PULL_REQUEST" == 'false' && "$TRAVIS_BRANCH" == 'master' ]] ; then
   ./deploy.bash ; else ./dist.bash ; fi
