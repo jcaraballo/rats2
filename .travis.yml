@@ -1,0 +1,10 @@
+language: scala
+scala:
+- 2.11.1
+env:
+  global:
+    secure: YqwKx97PXdqcfIzPq55imXqFCQUMgA1HxbJgxlGpzxDQ6Z7icDILTQRjo5dor/A0dFvRXp5+RJQAzXsPRBQy9+pV4ILCpp7bwz5LqIQTLWOVfc8duRjndZubb0H559QU5ryzrjOt1StahEM+plxeuCEQ08QUdkga6tp/XlJaHms=
+script:
+- cat /home/travis/.ssh/id_rsa.pub
+- if [[ "$TRAVIS_PULL_REQUEST" == 'false' && "$TRAVIS_BRANCH" == 'master' ]] ; then
+  ./deploy.bash ; else ./dist.bash ; fi
