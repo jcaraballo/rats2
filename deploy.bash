@@ -21,11 +21,19 @@ function wait_for_response(){
 }
 
 function sssh(){
-  ssh -v -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+  if [[ "$DODGY" == "yes" ]] ; then
+    ssh -v -i dodgy -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+  else
+    ssh -v -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+  fi
 }
 
 function sscp(){
-  scp -v -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+  if [[ "$DODGY" == "yes" ]] ; then
+    scp -v -i dodgy -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+  else
+    scp -v -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+  fi
 }
 
 if [[ $# -eq 1 ]] ; then

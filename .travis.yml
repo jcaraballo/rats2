@@ -3,7 +3,13 @@ scala:
 - 2.11.1
 env:
   global:
-    secure: n9gDbTmZPjMr5dJiUUiZiV4L9ZScQH1+/8Hij7zYWxlDI0A0+dEApP2aIIfLWo55/RC0vETgdxRxElY6Gd5stcIIlJtk4zfSkY6cWryk7JcPJIWcOvMg3Kqlk9DSRWVg8RBLxjFC8FfKyOFGzx+uQH4gEOv09FrFX8taeXiblx8=
+  - secure: n9gDbTmZPjMr5dJiUUiZiV4L9ZScQH1+/8Hij7zYWxlDI0A0+dEApP2aIIfLWo55/RC0vETgdxRxElY6Gd5stcIIlJtk4zfSkY6cWryk7JcPJIWcOvMg3Kqlk9DSRWVg8RBLxjFC8FfKyOFGzx+uQH4gEOv09FrFX8taeXiblx8=
+  - secure: QMrkOenBVn2HwMdqrcC0ARbrAvlE6xIex5agPplkeg0osJgvFLJ+wiZAxdVkrLGyLbstz2bK8nf+WMRCk1s4pftver6m3uMrXARGqsHm7RQINzpYz4Q3XNyGBKXpsdxbJwO0xwh4VfGU5OQ3sf1Tix0Uf3kdG9Y/t1Fr3DkRlq0=
+  - DODGY=yes
+before_script:
+- openssl aes-256-cbc -d -pass env:DODGY_PASS -in dodgy.enc -out dodgy
 script:
 - if [[ "$TRAVIS_PULL_REQUEST" == 'false' && "$TRAVIS_BRANCH" == 'master' ]] ; then
   ./deploy.bash ; else ./dist.bash ; fi
+after_script:
+- rm -rf dodgy

@@ -15,3 +15,6 @@ project/plugins/project/
 
 # generated assembly configuration
 assembly-generated.sbt
+
+# generated dodgy identity file
+dodgy
