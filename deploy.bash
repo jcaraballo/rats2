@@ -61,7 +61,7 @@ sssh ${target} "mkdir -p rats" || moan "Unable to ensure that ~/rats exists in t
 sscp lb.bash "${target}:rats/" || moan "Unable to copy load balancer script lb.bash to <target>:rats/"
 sscp ${dist_path} "${target}:rats/" || moan "Unable to copy artefact $dist_path to <target>:rats/"
 
-ps_line=$(sssh ${target} "ps aux" | grep -i 'java -jar rats/rats-.*\.jar' || moan "Unable to retrieve rats ps information")
+ps_line=$(sssh ${target} "ps aux" | grep -i 'java -jar rats/rats-.*\.jar') || moan "Unable to retrieve rats ps information"
 if [[ $(echo "$ps_line" | wc -l) -gt 1 ]] ; then
   moan "Too many running rats:\n${ps_line}"
 fi
