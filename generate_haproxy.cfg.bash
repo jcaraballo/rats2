@@ -1,7 +1,8 @@
 #!/bin/bash
 
 cd "$( dirname "$0" )"
-source functions.bash
+source function_ensure_no_uncommited_changes.bash
+source function_moan.bash
 
 if [[ $# -ne 3 ]] ; then
   moan 'usage: generate_haproxy_cfg.bash <stats_url> <stats_user> <stats_password>'

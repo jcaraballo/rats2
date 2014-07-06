@@ -1,12 +1,8 @@
 #!/bin/bash
 
 cd "$( dirname "$0" )"
-source functions.bash
-
-function moan(){
-  echo -e "$1" 1>&2
-  exit 1
-}
+source function_ensure_no_uncommited_changes.bash
+source function_moan.bash
 
 function wait_for_response(){
   echo "waiting for url $(echo ${1}| sed 's|[^:/]*|<server>|') to respond ${2}"

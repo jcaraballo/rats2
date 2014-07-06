@@ -2,7 +2,7 @@
 
 cd "$( dirname "$0" )"
 
-source functions.bash
+source function_ensure_no_uncommited_changes.bash
 
 ensure_no_uncommited_changes
 
