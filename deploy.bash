@@ -22,17 +22,17 @@ function wait_for_response(){
 
 function sssh(){
   if [[ "$DODGY" == "yes" ]] ; then
-    ssh -v -i dodgy -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+    ssh -i dodgy -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
   else
-    ssh -v -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+    ssh -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
   fi
 }
 
 function sscp(){
   if [[ "$DODGY" == "yes" ]] ; then
-    scp -v -i dodgy -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+    scp -q -i dodgy -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
   else
-    scp -v -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
+    scp -q -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
   fi
 }
 
