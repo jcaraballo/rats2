@@ -1,7 +1,7 @@
 rats
 ====
 
-![Travis badge](https://travis-ci.org/jcaraballo/rats.svg?branch=master)
+![Travis badge](https://travis-ci.org/jcaraballo/rats2.svg?branch=master)
 
 
 Battleships game, just to play a bit
