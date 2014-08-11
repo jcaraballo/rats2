@@ -3,34 +3,8 @@
 cd "$( dirname "$0" )"
 source function_ensure_no_uncommited_changes.bash
 source function_moan.bash
-
-function wait_for_response(){
-  echo "waiting for url $(echo ${1}| sed 's|[^:/]*|<server>|') to respond ${2}"
-  response=''
-  while [[ "$response" != "$2" ]]; do
-    response=$(curl -s "$1")
-    if [[ "$response" != "$2" ]]; then
-      sleep 1
-      echo "."
-    fi
-  done
-}
-
-function sssh(){
-  if [[ "$DODGY" == "yes" ]] ; then
-    ssh -i dodgy -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
-  else
-    ssh -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
-  fi
-}
-
-function sscp(){
-  if [[ "$DODGY" == "yes" ]] ; then
-    scp -q -i dodgy -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
-  else
-    scp -q -oPasswordAuthentication=no -oUserKnownHostsFile=known_hosts $@
-  fi
-}
+source function_wait_for_response.bash
+source function_dodgy_ssh.bash
 
 if [[ $# -eq 1 ]] ; then
   target=$1
